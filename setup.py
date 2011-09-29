@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name='django-chimpusers', 
-    version=chimpusers.get_version()
+    version=chimpusers.get_version(),
     description='Integrate Django users with a MailChimp mailing list.',
     long_description=read('README.markdown'),
     author='Micah Carrick',
@@ -16,7 +16,7 @@ setup(
     packages=['chimpusers'],
     license='BSD',
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
