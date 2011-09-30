@@ -10,9 +10,10 @@ Requirements
 ------------
 
 * [MailSnake][10], a Python wrapper for the [MailChimp v1.3 API][2]. You can
-  install MailSnake using `git`, `easy_install`, or `pip`:
+  install MailSnake using `git`:
 
-        pip install mailsnake
+        git clone https://github.com/leftium/mailsnake.git
+        python setup.py install
 
 * The API key for your MailChimp account. [Where can I find my API key?][4]
 * The ID of the list you want to integrate with. [How can I find my List ID?][5]
