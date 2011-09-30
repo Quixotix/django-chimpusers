@@ -61,25 +61,24 @@ class UserSubscription(models.Model):
             self.status = self.NOT_SUBSCRIBED
             self.optin_time = None
             self.optin_ip = None
-            return None
         else:
             data = response['data'][0]
             
-        if data['status'] == 'unsubscribed':
-            self.status = self.UNSUBSCRIBED
-        elif data['status'] == 'pending':
-            self.status = self.PENDING
-        elif data['status'] == 'cleaned':
-            self.status = self.CLEANED
-        elif data['status'] == 'subscribed':
-            self.status = self.SUBSCRIBED
-        else: 
-            self.status = self.UNKNOWN
-        
-        if data['ip_opt']:
-            self.optin_ip = data['ip_opt']
-        if data['timestamp']:
-            self.optin_time = data['timestamp']
+            if data['status'] == 'unsubscribed':
+                self.status = self.UNSUBSCRIBED
+            elif data['status'] == 'pending':
+                self.status = self.PENDING
+            elif data['status'] == 'cleaned':
+                self.status = self.CLEANED
+            elif data['status'] == 'subscribed':
+                self.status = self.SUBSCRIBED
+            else: 
+                self.status = self.UNKNOWN
+            
+            if data['ip_opt']:
+                self.optin_ip = data['ip_opt']
+            if data['timestamp']:
+                self.optin_time = data['timestamp']
         
         if save:
             self.save()
