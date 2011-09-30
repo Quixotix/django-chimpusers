@@ -158,7 +158,7 @@ __UserSubscription.sync()__
 The `UserSubscription` model provides the `sync` method to synchronize the model
 fields with the MailChimp API. Since the user or an administrator can manipulate
 subscriptions from the MailChimp website and you _may_ not have any [webhooks][9]
-setup yet, syncing the `UserSubscription` may be necessary.
+setup yet, syncing the `UserSubscription` can come in handy.
 
     from chimpusers.models import UserSubscription
     
@@ -172,11 +172,52 @@ setup yet, syncing the `UserSubscription` may be necessary.
     # subscription.optin_time
 
 
-### The PendingUserSubscription Model
+### The groups_form_factory Form Factory
 
-TODO
+One of the great features of MailChimp is to segregate your list into various
+interest [groups][3]. This allows you to maintain one list for your website's 
+users and allow them to sign up for one or more groups. 
 
+For example, an e-commerce website may have a list of all their customers, and
+groups to allow their customers to recieve a monthly newsletter, another group
+for new product announcements, and another group for holiday promotions.
 
+The `groups_form_factory()` function dynamically generates a form for opting in
+and out of your list's groups. This could be used in a view allowing existing
+subscribers to modify their group preferences or combined with a registration
+form to allow new subscribers to opt-in to specific groups at sign up.
+
+    from chimpusers.models import UserSubscription
+    from chimpusers.forms import groups_form_factory
+    from datetime import datetime
+    
+    # ...
+    
+    subscription = UserSubscription.objects.get(user=request.user)
+    GroupsForm = groups_form_factory(request.user.email)
+    
+    if request.method == 'POST':
+        form = GroupsForm(request.post)
+        if form.is_valid():
+            merge_vars = {'GROUPINGS': [form.merge_var]}
+            if subscription.is_subscribed():
+                # update user's groups
+                subscription.update(merge_vars=merge)
+            else:
+                # subscribe
+                optin_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                if 'HTTP_X_FORWARDED_FOR' in request.META:
+                    optin_ip = request.META['HTTP_X_FORWARDED_FOR']
+                else:
+                    optin_ip = request.META['REMOTE_ADDR']
+                merge['OPTIN_IP'] = optin_ip
+                merge['OPTIN_TIME'] = optin_time
+                subscription.subscribe(merge_vars=merge)
+    else:
+        form = GroupsForm()
+    
+    # ...
+    
 
 [1]: http://mailchimp.com
 [2]: http://apidocs.mailchimp.com/api/1.3/
