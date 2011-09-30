@@ -13,7 +13,7 @@ setup(
     author='Micah Carrick',
     author_email='micah@quixotix.com',
     url='https://github.com/Quixotix/django-chimpusers',
-    packages=['chimpusers'],
+    packages=['chimpusers', 'chimpusers.management', 'chimpusers.management.commands'],
     license='BSD',
     classifiers=[
         "Development Status :: 3 - Alpha",
