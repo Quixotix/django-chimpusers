@@ -12,7 +12,7 @@ setup(
     long_description=read('README.markdown'),
     author='Micah Carrick',
     author_email='micah@quixotix.com',
-    url='git@github.com:Quixotix/django-chimpusers.git',
+    url='https://github.com/Quixotix/django-chimpusers',
     packages=['chimpusers'],
     license='BSD',
     classifiers=[
