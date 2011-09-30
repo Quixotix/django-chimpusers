@@ -61,6 +61,7 @@ class UserSubscription(models.Model):
             self.status = self.NOT_SUBSCRIBED
             self.optin_time = None
             self.optin_ip = None
+            data = None
         else:
             data = response['data'][0]
             
