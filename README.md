@@ -10,10 +10,9 @@ Requirements
 ------------
 
 * [MailSnake][10], a Python wrapper for the [MailChimp v1.3 API][2]. You can
-  install MailSnake using `git`:
+  install MailSnake using `easy_install` or `pip`:
 
-        git clone https://github.com/leftium/mailsnake.git
-        python setup.py install
+    pip install mailsnake
 
 * The API key for your MailChimp account. [Where can I find my API key?][4]
 * The ID of the list you want to integrate with. [How can I find my List ID?][5]
@@ -22,8 +21,11 @@ Requirements
 Installation
 ------------
 
-As this app is still under development, the best installation method is to clone
-the git repository. 
+For the latest stable version, install using `easy_install` or `pip`:
+
+    pip install django-chimpusers
+
+For the latest development version, install from the git repository.
 
     git clone git@github.com:Quixotix/django-chimpusers.git
     setup.py install django-chimpusers
