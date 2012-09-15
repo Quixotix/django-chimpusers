@@ -12,7 +12,7 @@ setup(
     name = 'django-chimpusers', 
     version = chimpusers.get_version(),
     description = 'Integrate Django users with a MailChimp mailing list.',
-    long_description = read('README'),
+    long_description = read('README.md'),
     author = 'Micah Carrick',
     author_email = 'micah@quixotix.com',
     url = 'https://github.com/Quixotix/django-chimpusers',
