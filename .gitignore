@@ -1,2 +1,6 @@
 *.pyc
 dist
+build
+distribute-*.egg
+distribute-*.gz
+*.egg-info/
